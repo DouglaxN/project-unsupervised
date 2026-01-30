@@ -1,5 +1,5 @@
 # Não subir o arquivo do datasert 
-data/Douglas/
-data/Nathalia/
-data/J/
-data/Gabriel/
+Douglas/data/*
+Nathalia/data/*
+J/data/*
+Gabriel/data/*
