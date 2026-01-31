@@ -1,7 +1,8 @@
-# Não subir o arquivo do dataset 
+# Não subir o arquivo do dataset
 Douglas/data/
 Nathalia/data/
 J/data/
 Gabriel/data/
 README_files/
+.vscode/*
 .DS_Store
