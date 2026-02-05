@@ -1,55 +1,112 @@
-# 📊 Aprendizado de Máquina Não Supervisionado
-### Brazil Organized Violence (1993–2024)
-Projeto final de disciplina focado na aplicação prática de técnicas de aprendizado não supervisionado para análise exploratória e descoberta de padrões em dados reais de conflitos violentos no Brasil.
+# 📊 Projeto Unsupervised Learning aplicado a Dados Epidemiológicos (COVID-19)
 
----
-### 🎯 Objetivo do Projeto
-O objetivo deste projeto é explorar, reduzir dimensionalidade e agrupar padrões de violência organizada no Brasil utilizando algoritmos clássicos de aprendizado não supervisionado. A ideia central é responder perguntas como:
+Este repositório contém um **notebook de aprendizado de máquina não supervisionado** do projeto de final de disciplina cujo objetivo é identificar **padrões latentes e perfis epidemiológicos** entre municípios brasileiros a partir de dados relacionados à COVID-19.
 
----
-## 📁 Dataset
-
-**Fonte:** Kaggle  
-**Nome:** *Brazil Organized Violence (1993–2024)*  
-
-O dataset documenta conflitos violentos organizados no Brasil entre **1993 e 2024**, contendo informações detalhadas sobre eventos de violência, incluindo atores envolvidos, localização geográfica, tipo de conflito e número de fatalidades.
-
-### 📌 Principais Grupos de Variáveis
-
-Para fins de aprendizado não supervisionado, as variáveis do dataset podem ser organizadas conceitualmente em grupos:
-
-#### 1. Variáveis Temporais
-- `year`
-- `date_start`, `date_end`
-- `active_year`
-- `date_prec`
-
-#### 2. Variáveis Espaciais / Geográficas
-- `latitude`, `longitude`
-- `adm_1` (estado)
-- `adm_2` (município)
-- `where_prec`
-- `priogrid_gid`
-
-#### 3. Características do Conflito
-- `type_of_violence` (1 = estatal, 2 = não estatal, 3 = violência unilateral)
-- `event_clarity`
-- `number_of_sources`
-
-#### 4. Impacto / Intensidade da Violência
-- `deaths_a`
-- `deaths_b`
-- `deaths_civilians`
-- `deaths_unknown`
-- `best`, `high`, `low`
-
-#### 5. Metadados e Identificadores (não utilizados diretamente)
-- `id`, `relid`, `conflict_new_id`, `dyad_new_id`
-- Nomes de atores (`side_a`, `side_b`)
-- Campos textuais descritivos de fontes e localização
-
-> ⚠️ **Observação:** variáveis textuais extensas, identificadores e campos puramente descritivos são excluídos ou agregados durante o pré-processamento, pois não contribuem diretamente para métodos baseados em distância.
+O projeto utiliza técnicas modernas de **redução de dimensionalidade** e **clusterização**, com foco em **interpretação**, **visualização** e **comparação entre métodos**.
 
 ---
 
-## Em construção 🚧
+## 🧠 Objetivo do Projeto
+
+O principal objetivo é investigar se municípios brasileiros podem ser agrupados de acordo com **semelhanças no comportamento epidemiológico**, considerando múltiplas variáveis simultaneamente, **sem o uso de rótulos prévios**.
+
+Especificamente, o projeto busca:
+
+- Identificar **padrões naturais** nos dados;
+- Reduzir a complexidade de dados de alta dimensionalidade;
+- Comparar algoritmos de clusterização não supervisionados;
+- Avaliar a qualidade e interpretabilidade dos agrupamentos obtidos.
+
+---
+
+## 📁 Estrutura do Projeto
+
+├── main.ipynb # Notebook principal com toda a análise
+├── README.md # Descrição do projeto
+
+
+Todo o pipeline de análise está concentrado no notebook.
+
+---
+
+## 🗂️ Conjunto de Dados
+
+Os dados utilizados são derivados de informações públicas sobre a COVID-19 no Brasil, agregadas por **município**.
+
+Após o pré-processamento, o conjunto final contém **variáveis numéricas** que descrevem o comportamento da pandemia ao longo do tempo, tais como:
+
+- Estatísticas de casos e óbitos (máximo, média, desvio padrão);
+- Taxas derivadas (ex.: taxa de mortalidade);
+- Métricas temporais e de crescimento;
+- Codificação categórica (ex.: estados).
+
+O resultado é um dataset **multivariado e de alta dimensionalidade**, adequado para análise exploratória e clusterização.
+
+---
+
+## ⚙️ Metodologia
+
+O notebook segue as seguintes etapas:
+
+### 1️⃣ Pré-processamento
+- Limpeza dos dados;
+- Seleção e engenharia de atributos;
+- Padronização das variáveis numéricas.
+
+### 2️⃣ Redução de Dimensionalidade
+
+Foram avaliadas duas técnicas não lineares:
+
+- **t-SNE**
+  - Utilizado principalmente para **visualização exploratória**;
+  - Preserva relações locais entre os dados.
+
+- **UMAP**
+  - Preserva estrutura local e global;
+  - Apresenta maior estabilidade;
+  - Utilizado como base para a clusterização.
+
+### 3️⃣ Clusterização
+
+Foram comparados dois algoritmos:
+
+- **K-Means**
+  - Aplicado sobre o espaço reduzido pelo UMAP;
+  - Número de clusters definido com base em análise visual e métricas internas.
+
+- **DBSCAN**
+  - Baseado em densidade;
+  - Não requer definição prévia do número de clusters;
+  - Avaliado quanto à capacidade de identificar padrões e ruído.
+
+---
+
+## 📈 Principais Resultados
+
+- A redução de dimensionalidade mostrou-se essencial para revelar **estruturas latentes** nos dados.
+- O **UMAP** produziu um espaço latente mais adequado para clusterização do que o t-SNE.
+- A combinação **UMAP + K-Means** apresentou:
+  - Melhor separação entre clusters;
+  - Maior estabilidade;
+  - Agrupamentos mais interpretáveis.
+- O **DBSCAN** apresentou limitações relacionadas à sensibilidade aos parâmetros e à variação de densidade dos dados.
+
+---
+
+## 🧪 Tecnologias e Bibliotecas Utilizadas
+
+- Python  
+- Pandas  
+- NumPy  
+- Scikit-learn  
+- Matplotlib  
+- Seaborn  
+- UMAP-learn  
+
+---
+🚀 Possíveis Extensões
+- Avaliação quantitativa com métricas internas (Silhouette, Davies–Bouldin);
+- Análise semântica detalhada de cada cluster;
+- Comparação com métodos hierárquicos;
+- Aplicação da abordagem a outros contextos ou períodos.
+
