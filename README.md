@@ -21,8 +21,10 @@ Especificamente, o projeto busca:
 
 ## 📁 Estrutura do Projeto
 
-├── main.ipynb # Notebook principal com toda a análise
-├── README.md # Descrição do projeto
+.
+├── Final/main.ipynb        # Notebook principal com toda a análise
+├── README.md               # Descrição do projeto
+
 
 
 Todo o pipeline de análise está concentrado no notebook.
